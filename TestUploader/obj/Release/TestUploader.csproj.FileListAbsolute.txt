@@ -1,0 +1,22 @@
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\bin\Release\TestUploader.exe.config
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.exe
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.pdb
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\bin\Release\TestUploader.exe
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\bin\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\bin\Release\TestUploader.pdb
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.csprojResolveAssemblyReference.cache
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.Form1.resources
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.Properties.Resources.resources
+C:\Users\Tudor\Desktop\Uploader\Uploader\Uploader\TestUploader\obj\Release\TestUploader.csproj.GenerateResource.Cache
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\bin\Release\TestUploader.exe.config
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.exe
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.pdb
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\bin\Release\TestUploader.exe
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\bin\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\bin\Release\TestUploader.pdb
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.csprojResolveAssemblyReference.cache
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.Form1.resources
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.Properties.Resources.resources
+C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.csproj.GenerateResource.Cache
