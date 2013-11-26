@@ -58,5 +58,10 @@ namespace Uploader
                 return ex.Message.ToString();
             }
         }
+
+        [WebMethod]
+
+        public string MixWavFiles()
+        
     }
 }

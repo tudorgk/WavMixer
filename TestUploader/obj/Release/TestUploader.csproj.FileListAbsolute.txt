@@ -20,3 +20,7 @@ C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\Test
 C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.Form1.resources
 C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.Properties.Resources.resources
 C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\Uploader\TestUploader\obj\Release\TestUploader.csproj.GenerateResource.Cache
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\bin\Release\TestUploader.exe.config
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.exe
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.pdb
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.XmlSerializers.dll
