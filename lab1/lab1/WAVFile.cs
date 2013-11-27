@@ -22,6 +22,7 @@ namespace lab1
         private int wavBytesPerSec;       // Bytes per second
         private short wavBytesPerSample;  // # of bytes per sample (1=8 bit Mono, 2=8 bit Stereo or 16 bit Mono, 4=16 bit Stereo)
         private short wavBitsPerSample;   // # of bits per sample
+        private int wavSubChunk2Size;
         private int wavDataSizeBytes;     // The data size (bytes)
 
         //private int mDataBytesWritten;  // Used in write mode for keeping track of
@@ -36,10 +37,11 @@ namespace lab1
 
         public WAVFile(String pathToFile)
         {
-            wavFilename = pathToFile;
-
             initVariables();
-           
+            wavFilename = pathToFile;
+            
+            
+            Open(wavFilename);
         }
 
         ~WAVFile()
@@ -60,6 +62,12 @@ namespace lab1
                 //setting up the wavContent byte array
                 wavFileStream.Seek(0, SeekOrigin.End);
                 wavContent = new byte[wavFileStream.Position];
+
+                //reading the wav header
+                wavHeader = new byte[44];
+                wavFileStream.Seek(0, SeekOrigin.Begin);
+                wavFileStream.Read(wavHeader, 0, 44);
+
 
                 //reading the wav file's content
                 wavFileStream.Seek(0, SeekOrigin.Begin);
@@ -94,6 +102,13 @@ namespace lab1
                     Array.Reverse(buffer2,0,2);
                 wavBitsPerSample = BitConverter.ToInt16(buffer2,0);
 
+                //reading subchunk2size
+                wavFileStream.Seek(40, SeekOrigin.Begin);
+                wavFileStream.Read(buffer, 0, 4);
+                if (!BitConverter.IsLittleEndian)
+                    Array.Reverse(buffer);
+                wavSubChunk2Size= BitConverter.ToInt32(buffer, 0);
+
                 PrintWAVInfo();
 
                 //size of the data
@@ -112,7 +127,8 @@ namespace lab1
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+                throw ex;
             }
         }
 
@@ -130,12 +146,24 @@ namespace lab1
             wavSampleRateHz *= factor;
         }
 
+        //create a wav file from various parts
+        public void OutputWAVFile(byte [] header, short[] samples, String fileName)
+        {
+            FileStream wavOut;
+
+            wavOut = new FileStream(fileName, FileMode.Create);
+            wavOut.Write(header, 0, header.Length);
+            wavOut.Write(Short2ByteArray(samples),0,samples.Length * 2);
+            wavOut.Close();
+        }
+
         public void PrintWAVInfo()
         {
             Debug.WriteLine("Number of channels = " + wavNumChannels);
             Debug.WriteLine("Sample rate = " + wavSampleRateHz);
             Debug.WriteLine("Bytes/sec = " + wavBytesPerSec);
             Debug.WriteLine("Bits/sample = " + wavBitsPerSample);
+            Debug.WriteLine("SubChunk2Size = " + wavSubChunk2Size);
         }
 
         /// <summary>
@@ -170,6 +198,23 @@ namespace lab1
             mNumSamplesRemaining = 0;
         }
 
+        public static byte[] Short2ByteArray(short[] sArray)
+        {
+            byte[] rez = new byte[sArray.Length * 2];
+            int cnt = 0;
+            foreach (short sword in sArray)
+            {
+                Int16 sample = (Int16)sword;
+                byte lo = Convert.ToByte(sample & 0xff);
+                byte hi = Convert.ToByte((sample >> 8) & 0xff);
+
+                rez[cnt] = lo;
+                rez[cnt + 1] = hi;
+                cnt += 2;
+            }
+            return rez;
+        } 
+
         /// <summary>
         /// Returns whether or not the WAV file format (mono/stereo,
         /// sample rate, and bits per sample) match another WAV file's
@@ -182,9 +227,9 @@ namespace lab1
             bool retval = false;
 
             if (pWAVFile != null)
-                retval = ((wavNumChannels == pWAVFile.wavNumChannels) &&
-                          (wavSampleRateHz == pWAVFile.wavSampleRateHz) &&
-                          (wavBitsPerSample == pWAVFile.wavBitsPerSample));
+                retval = ((wavNumChannels == pWAVFile.NumChannels) &&
+                          (wavSampleRateHz == pWAVFile.SampleRateHz) &&
+                          (wavBitsPerSample == pWAVFile.BitsPerSample));
 
             return retval;
         }
@@ -228,6 +273,30 @@ namespace lab1
         public short BitsPerSample
         {
             get { return wavBitsPerSample; }
+        }
+
+        /// <summary>
+        /// Gets the data wav samples
+        /// </summary>
+        public short [] WAVSamples
+        {
+            get { return wavSamples; }
+        }
+
+        /// <summary>
+        /// Gets the header
+        /// </summary>
+        public byte[] WAVHeader
+        {
+            get { return wavHeader; }
+        }
+
+        /// <summary>
+        /// Gets the SubChunk2Size
+        /// </summary>
+        public int SubChunk2Size
+        {
+            get { return wavSubChunk2Size; }
         }
 
     }

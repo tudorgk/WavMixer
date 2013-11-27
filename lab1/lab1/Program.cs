@@ -15,7 +15,7 @@ namespace lab1
 
         static void Main(string[] args)
         {
-
+            /*
             wavOut = new FileStream("out.wav", FileMode.Create);
 
             FileStream file1 = new FileStream("wave1_44KHzMono.wav", FileMode.Open);
@@ -60,13 +60,17 @@ namespace lab1
             wavOut.Write(Short2ByteArray(mixaj), 0, mixaj.Length);
             wavOut.Close();
 
-
+            */
             //testing wav file class
 
-            WAVFile testWav = new WAVFile();
-            testWav.Open("wave1_44KHzMono.wav");
-            testWav.UpSample(4);
-            testWav.PrintWAVInfo();
+            //WAVFile testWav = new WAVFile();
+            //testWav.Open("wave1_44KHzMono.wav");
+            //testWav.UpSample(4);
+            //testWav.PrintWAVInfo();
+
+            //testing the mixer class
+            WAVMixer testMixer = new WAVMixer("wave1_44KHzMono.wav", "wave2_44KHzMono.wav");
+            testMixer.startMixing();
         }
 
         public static byte[] Short2ByteArray(short[] sArray)

@@ -3,3 +3,8 @@ C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\lab1\lab1\bin
 C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\lab1\lab1\obj\Debug\lab1.csprojResolveAssemblyReference.cache
 C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\lab1\lab1\obj\Debug\lab1.exe
 C:\Users\Tudor\Dropbox\Facultate\Anul 4\Semestrul 1\PS\Proiect\App\lab1\lab1\obj\Debug\lab1.pdb
+C:\Users\Tudor\Documents\GitHub\WavMixer\lab1\lab1\obj\Debug\lab1.exe
+C:\Users\Tudor\Documents\GitHub\WavMixer\lab1\lab1\obj\Debug\lab1.pdb
+C:\Users\Tudor\Documents\GitHub\WavMixer\lab1\lab1\bin\Debug\lab1.exe
+C:\Users\Tudor\Documents\GitHub\WavMixer\lab1\lab1\bin\Debug\lab1.pdb
+C:\Users\Tudor\Documents\GitHub\WavMixer\lab1\lab1\obj\Debug\lab1.csprojResolveAssemblyReference.cache
