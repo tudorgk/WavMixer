@@ -6,7 +6,8 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.IO;
-
+using System.Diagnostics;
+using lab1;
 
 namespace Uploader
 {
@@ -21,8 +22,11 @@ namespace Uploader
     public class FileUploader : System.Web.Services.WebService
     {
 
+        string wav1Filename, wav2Filename;
+        WAVFile wav1, wav2;
+
         [WebMethod]
-        public string UploadFile(byte[] f, string fileName)
+        public string UploadFile(byte[] f1, string fileName1, byte[] f2, string fileName2)
         {
             // the byte array argument contains the content of the file
             // the string argument contains the name and extension
@@ -31,23 +35,32 @@ namespace Uploader
             {
                 // instance a memory stream and pass the
                 // byte array to its constructor
-                MemoryStream ms = new MemoryStream(f);
+                MemoryStream ms1 = new MemoryStream(f1);
+                MemoryStream ms2 = new MemoryStream(f2);
 
                 // instance a filestream pointing to the 
                 // storage folder, use the original file name
                 // to name the resulting file
-                FileStream fs = new FileStream
+                FileStream fs1 = new FileStream
                     (System.Web.Hosting.HostingEnvironment.MapPath("~/TransientStorage/") + 
-                    fileName, FileMode.Create);
+                    fileName1, FileMode.Create);
+                FileStream fs2 = new FileStream
+                   (System.Web.Hosting.HostingEnvironment.MapPath("~/TransientStorage/") +
+                   fileName2, FileMode.Create);
 
                 // write the memory stream containing the original
                 // file as a byte array to the filestream
-                ms.WriteTo(fs);
+                ms1.WriteTo(fs1);
+                ms2.WriteTo(fs2);
 
                 // clean up
-                ms.Close();
-                fs.Close();
-                fs.Dispose();
+                ms1.Close();
+                fs1.Close();
+                fs1.Dispose();
+
+                ms2.Close();
+                fs2.Close();
+                fs2.Dispose();
 
                 // return OK if we made it this far
                 return "OK";
@@ -60,8 +73,37 @@ namespace Uploader
         }
 
         [WebMethod]
+        public string RunMixer()
+        {   
+            string path1,path2;
 
-        public string MixWavFiles()
+            path1 = System.Web.Hosting.HostingEnvironment.MapPath("~/TransientStorage/") +
+                   wav1Filename;
+            path2 = System.Web.Hosting.HostingEnvironment.MapPath("~/TransientStorage/") +
+                   wav2Filename;
+           
+            Debug.WriteLine(wav1Filename);
+            Debug.WriteLine(path1);
+
+            WAVMixer mixer = new WAVMixer(path1, path2);
+            return mixer.startMixing();
+        }
+
+        [WebMethod]
+        public string MixWavFiles(byte[] f1, string fileName1, byte[] f2, string fileName2)
+        {
+            string outputPath;
+            
+            wav1Filename = fileName1;
+            wav2Filename = fileName2;
+
+
+            UploadFile(f1, wav1Filename, f2, wav2Filename);
+
+            outputPath=RunMixer();
+
+            return outputPath;
+        }
         
     }
 }

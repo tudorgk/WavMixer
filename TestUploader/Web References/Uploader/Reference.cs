@@ -31,6 +31,10 @@ namespace TestUploader.Uploader {
         
         private System.Threading.SendOrPostCallback UploadFileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback RunMixerOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MixWavFilesOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -73,33 +77,105 @@ namespace TestUploader.Uploader {
         public event UploadFileCompletedEventHandler UploadFileCompleted;
         
         /// <remarks/>
+        public event RunMixerCompletedEventHandler RunMixerCompleted;
+        
+        /// <remarks/>
+        public event MixWavFilesCompletedEventHandler MixWavFilesCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f, string fileName) {
+        public string UploadFile([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f1, string fileName1, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f2, string fileName2) {
             object[] results = this.Invoke("UploadFile", new object[] {
-                        f,
-                        fileName});
+                        f1,
+                        fileName1,
+                        f2,
+                        fileName2});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void UploadFileAsync(byte[] f, string fileName) {
-            this.UploadFileAsync(f, fileName, null);
+        public void UploadFileAsync(byte[] f1, string fileName1, byte[] f2, string fileName2) {
+            this.UploadFileAsync(f1, fileName1, f2, fileName2, null);
         }
         
         /// <remarks/>
-        public void UploadFileAsync(byte[] f, string fileName, object userState) {
+        public void UploadFileAsync(byte[] f1, string fileName1, byte[] f2, string fileName2, object userState) {
             if ((this.UploadFileOperationCompleted == null)) {
                 this.UploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadFileOperationCompleted);
             }
             this.InvokeAsync("UploadFile", new object[] {
-                        f,
-                        fileName}, this.UploadFileOperationCompleted, userState);
+                        f1,
+                        fileName1,
+                        f2,
+                        fileName2}, this.UploadFileOperationCompleted, userState);
         }
         
         private void OnUploadFileOperationCompleted(object arg) {
             if ((this.UploadFileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UploadFileCompleted(this, new UploadFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RunMixer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string RunMixer() {
+            object[] results = this.Invoke("RunMixer", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RunMixerAsync() {
+            this.RunMixerAsync(null);
+        }
+        
+        /// <remarks/>
+        public void RunMixerAsync(object userState) {
+            if ((this.RunMixerOperationCompleted == null)) {
+                this.RunMixerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRunMixerOperationCompleted);
+            }
+            this.InvokeAsync("RunMixer", new object[0], this.RunMixerOperationCompleted, userState);
+        }
+        
+        private void OnRunMixerOperationCompleted(object arg) {
+            if ((this.RunMixerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RunMixerCompleted(this, new RunMixerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/MixWavFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string MixWavFiles([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f1, string fileName1, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f2, string fileName2) {
+            object[] results = this.Invoke("MixWavFiles", new object[] {
+                        f1,
+                        fileName1,
+                        f2,
+                        fileName2});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MixWavFilesAsync(byte[] f1, string fileName1, byte[] f2, string fileName2) {
+            this.MixWavFilesAsync(f1, fileName1, f2, fileName2, null);
+        }
+        
+        /// <remarks/>
+        public void MixWavFilesAsync(byte[] f1, string fileName1, byte[] f2, string fileName2, object userState) {
+            if ((this.MixWavFilesOperationCompleted == null)) {
+                this.MixWavFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMixWavFilesOperationCompleted);
+            }
+            this.InvokeAsync("MixWavFiles", new object[] {
+                        f1,
+                        fileName1,
+                        f2,
+                        fileName2}, this.MixWavFilesOperationCompleted, userState);
+        }
+        
+        private void OnMixWavFilesOperationCompleted(object arg) {
+            if ((this.MixWavFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MixWavFilesCompleted(this, new MixWavFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -135,6 +211,58 @@ namespace TestUploader.Uploader {
         private object[] results;
         
         internal UploadFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void RunMixerCompletedEventHandler(object sender, RunMixerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RunMixerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RunMixerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void MixWavFilesCompletedEventHandler(object sender, MixWavFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MixWavFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MixWavFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

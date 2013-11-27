@@ -1,0 +1,4 @@
+C:\Users\Tudor\Documents\GitHub\WavMixer\Uploader\obj\Release\Uploader.dll
+C:\Users\Tudor\Documents\GitHub\WavMixer\Uploader\obj\Release\Uploader.pdb
+C:\Users\Tudor\Documents\GitHub\WavMixer\Uploader\bin\Uploader.dll
+C:\Users\Tudor\Documents\GitHub\WavMixer\Uploader\bin\Uploader.pdb

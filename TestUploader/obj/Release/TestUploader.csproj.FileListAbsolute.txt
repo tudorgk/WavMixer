@@ -24,3 +24,10 @@ C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\bin\Release\TestUploader.e
 C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.exe
 C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.pdb
 C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.csprojResolveAssemblyReference.cache
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.Form1.resources
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.Properties.Resources.resources
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.csproj.GenerateResource.Cache
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\bin\Release\TestUploader.exe
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\bin\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\bin\Release\TestUploader.pdb
