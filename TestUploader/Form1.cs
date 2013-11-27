@@ -80,7 +80,7 @@ namespace TestUploader
                     br2.Close();
 
                     // pass the byte array (file) and file name to the web service
-                    string sTmp = srv.MixWavFiles(data1, strFile1,data2,strFile2);
+                    string [] sTmp = srv.MixWavFiles(data1, strFile1,data2,strFile2);
 
                     fStream1.Close();
                     fStream1.Dispose();
@@ -90,14 +90,18 @@ namespace TestUploader
 
                     // this will always say OK unless an error occurs,
                     // if an error occurs, the service returns the error message
-                    MessageBox.Show("File Upload Status: " + sTmp );
 
-                    WebClient webClient = new WebClient();
-                    webClient.DownloadFile(sTmp, "output.wav");
-
-
-
-                }
+                    if (sTmp[0].Equals("0"))
+                    {
+                        WebClient webClient = new WebClient();
+                        webClient.DownloadFile(sTmp[1], "output.wav");
+                        MessageBox.Show("Tracks successfully mixed and output downloaded.", "Success");
+                    }
+                    else
+                    {
+                        MessageBox.Show(sTmp[1], "Error");
+                    }
+              }
                 else
                 {
                     // Display message if the file was too large to upload

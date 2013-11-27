@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
@@ -19,15 +18,9 @@ namespace lab1
         private byte wavNumChannels;      // The # of channels (1 or 2)
         private int wavSampleRateHz;      // The audio sample rate (Hz)
         private int wavBytesPerSec;       // Bytes per second
-        private short wavBytesPerSample;  // # of bytes per sample (1=8 bit Mono, 2=8 bit Stereo or 16 bit Mono, 4=16 bit Stereo)
         private short wavBitsPerSample;   // # of bits per sample
         private int wavSubChunk2Size;
         private int wavDataSizeBytes;     // The data size (bytes)
-
-        //private int mDataBytesWritten;  // Used in write mode for keeping track of
-        // the number of bytes written
-        private int mNumSamplesRemaining; // When in read mode, this is used for keeping track of how many audio
-        // samples remain.  This is updated in GetNextSample_ByteArray().
 
         public WAVFile()
         {
@@ -192,7 +185,6 @@ namespace lab1
             wavFilename = null;
             wavFileStream = null;
             wavDataSizeBytes = 0;
-            wavBytesPerSample = 0;
        
             // These audio format defaults correspond to the standard for
             // CD audio.
@@ -200,7 +192,6 @@ namespace lab1
             wavSampleRateHz = 44100;
             wavBytesPerSec = 176400;
             wavBitsPerSample = 16;
-            mNumSamplesRemaining = 0;
         }
 
         public static byte[] Short2ByteArray(short[] sArray)

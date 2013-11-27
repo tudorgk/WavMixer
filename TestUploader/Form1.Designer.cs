@@ -53,7 +53,7 @@ namespace TestUploader
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(75, 23);
             this.uploadButton.TabIndex = 1;
-            this.uploadButton.Text = "Upload & Mix";
+            this.uploadButton.Text = "Upload and Mix";
             this.uploadButton.UseVisualStyleBackColor = true;
             this.uploadButton.Click += new System.EventHandler(this.button2_Click);
             // 

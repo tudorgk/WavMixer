@@ -119,9 +119,9 @@ namespace TestUploader.Uploader {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RunMixer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string RunMixer() {
+        public string[] RunMixer() {
             object[] results = this.Invoke("RunMixer", new object[0]);
-            return ((string)(results[0]));
+            return ((string[])(results[0]));
         }
         
         /// <remarks/>
@@ -146,13 +146,13 @@ namespace TestUploader.Uploader {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/MixWavFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string MixWavFiles([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f1, string fileName1, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f2, string fileName2) {
+        public string[] MixWavFiles([System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f1, string fileName1, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] f2, string fileName2) {
             object[] results = this.Invoke("MixWavFiles", new object[] {
                         f1,
                         fileName1,
                         f2,
                         fileName2});
-            return ((string)(results[0]));
+            return ((string[])(results[0]));
         }
         
         /// <remarks/>
@@ -242,10 +242,10 @@ namespace TestUploader.Uploader {
         }
         
         /// <remarks/>
-        public string Result {
+        public string[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((string[])(this.results[0]));
             }
         }
     }
@@ -268,10 +268,10 @@ namespace TestUploader.Uploader {
         }
         
         /// <remarks/>
-        public string Result {
+        public string[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((string[])(this.results[0]));
             }
         }
     }

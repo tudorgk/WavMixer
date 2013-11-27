@@ -7,6 +7,7 @@ using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.IO;
 using System.Diagnostics;
+using System.Collections.Generic;
 using lab1;
 
 namespace Uploader
@@ -23,7 +24,6 @@ namespace Uploader
     {
 
         string wav1Filename, wav2Filename;
-        WAVFile wav1, wav2;
 
         [WebMethod]
         public string UploadFile(byte[] f1, string fileName1, byte[] f2, string fileName2)
@@ -73,7 +73,7 @@ namespace Uploader
         }
 
         [WebMethod]
-        public string RunMixer()
+        public string [] RunMixer()
         {   
             string path1,path2;
 
@@ -86,23 +86,23 @@ namespace Uploader
             Debug.WriteLine(path1);
 
             WAVMixer mixer = new WAVMixer(path1, path2);
+
             return mixer.startMixing();
         }
 
         [WebMethod]
-        public string MixWavFiles(byte[] f1, string fileName1, byte[] f2, string fileName2)
+        public string [] MixWavFiles(byte[] f1, string fileName1, byte[] f2, string fileName2)
         {
-            string outputPath;
+            string [] output;
             
             wav1Filename = fileName1;
             wav2Filename = fileName2;
 
-
             UploadFile(f1, wav1Filename, f2, wav2Filename);
 
-            outputPath=RunMixer();
+            output=RunMixer();
 
-            return outputPath;
+            return output;
         }
         
     }

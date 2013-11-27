@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 
@@ -23,24 +22,33 @@ namespace lab1
             wav2 = new WAVFile(pathToFile2);
         }
 
-        public string startMixing()
+        public string[] startMixing()
         {
+            string[] ret = new string[2];            
             string path;
+
+            //check format match
             if (!wav1.FormatMatches(wav2))
             {
-               return "Files do not match.";
+                ret[0] ="1";
+                ret[1] = "Files do not match.";
+                return ret;
             }
 
             //check bitrate
             if (!checkBitRate())
             {
-                return "Please select 16-bit files.";
+                ret[0] ="1";
+                ret[1] = "Please select 16-bit files.";
+                return ret;
             }
 
             //check Tracks
             if (!checkAndUpSampleTracks())
             {
-                return "Please check sample rates.";
+                ret[0] ="1";
+                ret[1] = "Files do not have proportionate sample rates.";
+                return ret;
             }
             
             //begin mixing
@@ -49,7 +57,9 @@ namespace lab1
             //write to .wav file 
             path = createFile("output.wav");
 
-            return path;
+            ret[0] ="0";
+            ret[1] = path;
+            return ret;
         }
 
         private bool checkBitRate()
