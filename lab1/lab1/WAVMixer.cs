@@ -28,7 +28,14 @@ namespace lab1
         {
             if (!wav1.FormatMatches(wav2))
             {
-                Debug.WriteLine("Files do not match");
+                Debug.WriteLine("Files do not match.");
+                return;
+            }
+
+            //check bitrate
+            if (!checkBitRate())
+            {
+                Debug.WriteLine("Please select 16-bit files.");
                 return;
             }
 
@@ -43,6 +50,14 @@ namespace lab1
  
             //write to .wav file 
             createFile("output.wav");
+        }
+
+        private bool checkBitRate()
+        {
+            if (wav1.SampleRateHz == 8 || wav1.SampleRateHz == 8)
+                return false;
+
+            return true;
         }
 
         private bool checkAndUpSampleTracks()
