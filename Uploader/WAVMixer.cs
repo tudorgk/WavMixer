@@ -173,7 +173,8 @@ namespace lab1
             string path;
             mixedWAV = new WAVFile();
 
-            if (wav1.SubChunk2Size > wav2.SubChunk2Size)
+            
+            if (wav1.SubChunk2Size <= wav2.SubChunk2Size)
             {
                 outputHeader = wav1.WAVHeader;
             }
@@ -181,7 +182,7 @@ namespace lab1
             {
                 outputHeader = wav2.WAVHeader;
             }
-
+            
             path = mixedWAV.OutputWAVFile(outputHeader, mixedWAVSamples, filename);
 
             return path;

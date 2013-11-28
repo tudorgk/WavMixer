@@ -10,12 +10,12 @@ namespace lab1
         private String wavFilename;
         private FileStream wavFileStream;
         private byte[] wavContent;
-        private byte[] wavHeader;
+        private byte[] wavHeader = new byte[44];
         private short[] wavSamples;
 
         // Audio format information
         
-        private byte wavNumChannels;      // The # of channels (1 or 2)
+        private short wavNumChannels;      // The # of channels (1 or 2)
         private int wavSampleRateHz;      // The audio sample rate (Hz)
         private int wavBytesPerSec;       // Bytes per second
         private short wavBitsPerSample;   // # of bits per sample
@@ -66,20 +66,19 @@ namespace lab1
                     Console.WriteLine("File does not exist: " + fileName);
 
                 wavFileStream = new FileStream(fileName, FileMode.Open);
-                
-                //setting up the wavContent byte array
-                wavFileStream.Seek(0, SeekOrigin.End);
-                wavContent = new byte[wavFileStream.Position];
 
                 //reading the wav header
-                wavHeader = new byte[44];
                 wavFileStream.Seek(0, SeekOrigin.Begin);
                 wavFileStream.Read(wavHeader, 0, 44);
 
+                
+                wavFileStream.Seek(0, SeekOrigin.End);
+                wavContent = new byte[wavFileStream.Position];
 
                 //reading the wav file's content
-                wavFileStream.Seek(0, SeekOrigin.Begin);
-                wavFileStream.Read(wavContent, 0, wavContent.Length);
+                wavFileStream.Seek(44, SeekOrigin.Begin);
+                wavFileStream.Read(wavContent, 0, wavContent.Length - 44);
+
 
                 //extracting the necessary information
                 // # of channels (2 bytes)
@@ -88,13 +87,13 @@ namespace lab1
                 // # of channels (2 bytes)
                 wavFileStream.Seek(20, SeekOrigin.Begin);
                 wavFileStream.Read(buffer, 0, 4);
-                wavNumChannels= (BitConverter.IsLittleEndian ? buffer[2] : buffer[3]);
+                wavNumChannels = (BitConverter.IsLittleEndian ? buffer[2] : buffer[3]);
 
                 // Sample rate (4 bytes)
                 wavFileStream.Read(buffer, 0, 4);
                 if (!BitConverter.IsLittleEndian)
                     Array.Reverse(buffer);
-                wavSampleRateHz = BitConverter.ToInt32(buffer, 0);
+                //wavSampleRateHz = BitConverter.ToInt32(buffer, 0);
 
                 // Bytes per second (4 bytes)
                 wavFileStream.Read(buffer, 0, 4);
@@ -103,35 +102,39 @@ namespace lab1
                 wavBytesPerSec = BitConverter.ToInt32(buffer, 0);
 
                 // Bits per sample (2 bytes)
-                byte [] buffer2 = new byte [2];
-                wavFileStream.Seek(34,SeekOrigin.Begin);
+                byte[] buffer2 = new byte[2];
+                wavFileStream.Seek(34, SeekOrigin.Begin);
                 wavFileStream.Read(buffer2, 0, 2);
                 if (!BitConverter.IsLittleEndian)
-                    Array.Reverse(buffer2,0,2);
-                wavBitsPerSample = BitConverter.ToInt16(buffer2,0);
+                    Array.Reverse(buffer2, 0, 2);
+                wavBitsPerSample = BitConverter.ToInt16(buffer2, 0);
 
                 //reading subchunk2size
                 wavFileStream.Seek(40, SeekOrigin.Begin);
                 wavFileStream.Read(buffer, 0, 4);
                 if (!BitConverter.IsLittleEndian)
                     Array.Reverse(buffer);
-                wavSubChunk2Size= BitConverter.ToInt32(buffer, 0);
-
+                wavSubChunk2Size = BitConverter.ToInt32(buffer, 0);
+                /*
                 PrintWAVInfo();
+                */
 
                 //size of the data
-                wavDataSizeBytes = wavContent.Length - 44;
+                wavDataSizeBytes = wavContent.Length;
+          
 
                 //setting up wavSamples
                 wavSamples = new short[wavDataSizeBytes / 2]; //becasue short = 2 bytes :)
                 for (int i = 0; i < wavSamples.Length; i++)
                 {
-                    wavSamples[i] = BitConverter.ToInt16(wavContent, 44 + i * 2);
+                    wavSamples[i] = BitConverter.ToInt16(wavContent,i * 2);
                 }
                
-                
                 //closing file stream
-                Close();               
+                Close();     
+          
+                
+
             }
             catch (System.Exception ex)
             {
@@ -176,7 +179,7 @@ namespace lab1
             FileStream wavOut;
 
             wavOut = new FileStream(path, FileMode.Create);
-            wavOut.Write(header, 0, header.Length);
+            wavOut.Write(header, 0, 44);
             wavOut.Write(Short2ByteArray(samples),0,samples.Length * 2);
             wavOut.Close();
 
@@ -266,7 +269,6 @@ namespace lab1
 
             if (pWAVFile != null)
                 retval = ((wavNumChannels == pWAVFile.NumChannels) &&
-                          (wavSampleRateHz == pWAVFile.SampleRateHz) &&
                           (wavBitsPerSample == pWAVFile.BitsPerSample));
 
             return retval;
@@ -276,7 +278,7 @@ namespace lab1
         /// <summary>
         /// Gets the audio file's number of channels
         /// </summary>
-        public byte NumChannels
+        public short NumChannels
         {
             get { return wavNumChannels; }
         }
