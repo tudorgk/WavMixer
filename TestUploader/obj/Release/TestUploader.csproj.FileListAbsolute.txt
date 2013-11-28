@@ -30,3 +30,4 @@ C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\bin\Release\TestUploader.p
 C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.exe
 C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.pdb
 C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.XmlSerializers.dll
+C:\Users\Tudor\Documents\GitHub\WavMixer\TestUploader\obj\Release\TestUploader.csprojResolveAssemblyReference.cache

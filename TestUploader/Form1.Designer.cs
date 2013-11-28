@@ -49,9 +49,9 @@ namespace TestUploader
             // 
             // uploadButton
             // 
-            this.uploadButton.Location = new System.Drawing.Point(371, 129);
+            this.uploadButton.Location = new System.Drawing.Point(329, 116);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(75, 23);
+            this.uploadButton.Size = new System.Drawing.Size(117, 23);
             this.uploadButton.TabIndex = 1;
             this.uploadButton.Text = "Upload and Mix";
             this.uploadButton.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@ namespace TestUploader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 445);
+            this.ClientSize = new System.Drawing.Size(466, 162);
             this.Controls.Add(this.txtFileName2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtFileName1);

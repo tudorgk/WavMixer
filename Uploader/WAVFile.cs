@@ -22,11 +22,19 @@ namespace lab1
         private int wavSubChunk2Size;
         private int wavDataSizeBytes;     // The data size (bytes)
 
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public WAVFile()
         {
             initVariables();
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// /// <param name="pathToFile">The wav file's path</param>
         public WAVFile(String pathToFile)
         {
             initVariables();
@@ -36,11 +44,19 @@ namespace lab1
             Open(wavFilename);
         }
 
+        /// <summary>
+        /// Destructor
+        /// </summary>
         ~WAVFile()
         {
             Close();
         }
 
+
+        /// <summary>
+        /// Opens the wav file and extracts the necessary information.
+        /// </summary>
+        /// <param name="fileName">The wav file name</param>
         public void Open(String fileName)
         {
             try
@@ -124,7 +140,10 @@ namespace lab1
             }
         }
 
-
+        /// <summary>
+        /// Up sampling the wav file.
+        /// </summary>
+        /// <param name="factor">The upsampling factor</param>
         public void UpSample (int factor){
             int ptr = 0;
             short [] resultWavSamples = new short[wavSamples.Length * factor];
@@ -137,8 +156,17 @@ namespace lab1
             wavSamples = resultWavSamples;
             wavSampleRateHz *= factor;
         }
-
-        //create a wav file from various parts
+ 
+        
+        /// <summary>
+        /// Creates a wav file from various parts.
+        /// </summary>
+        /// <param name="header">The byte[] array that is contains the header information</param>
+        /// <param name="samples">The short[] array that is contains the wav samples</param>
+        /// <param name="fileName">The output file name</param>
+        /// <returns>
+        /// Returns the path of the created file.
+        /// </returns>
         public string OutputWAVFile(byte [] header, short[] samples, String fileName)
         {
             string path;
@@ -155,6 +183,9 @@ namespace lab1
             return path;
         }
 
+        /// <summary>
+        /// Prints wav file's info for debugging.
+        /// </summary>
         public void PrintWAVInfo()
         {
             Debug.WriteLine("Number of channels = " + wavNumChannels);
@@ -180,6 +211,9 @@ namespace lab1
             //initVariables();
         }
 
+        /// <summary>
+        /// Initializes the wav file's parameters
+        /// </summary>
         private void initVariables()
         {
             wavFilename = null;
@@ -194,6 +228,14 @@ namespace lab1
             wavBitsPerSample = 16;
         }
 
+
+        /// <summary>
+        /// Converts a short array to byte array.
+        /// </summary>
+        /// <param name="sArray">The short[] array that is being converted</param>
+        /// <returns>
+        /// A byte array
+        /// </returns>
         public static byte[] Short2ByteArray(short[] sArray)
         {
             byte[] rez = new byte[sArray.Length * 2];

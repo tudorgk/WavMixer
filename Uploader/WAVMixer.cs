@@ -11,17 +11,31 @@ namespace lab1
         WAVFile mixedWAV;
         short[] mixedWAVSamples;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public WAVMixer()
         {
 
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="pathToFile1">Path to first file</param>
+        /// <param name="pathToFile2">Path to second file</param>
         public WAVMixer(String pathToFile1, String pathToFile2)
         {
             wav1 = new WAVFile(pathToFile1);
             wav2 = new WAVFile(pathToFile2);
         }
 
+        /// <summary>
+        /// Begins mixing the files
+        /// </summary>
+        /// <returns>
+        /// Returns the errorCode and message/pathToFile.
+        /// </returns>
         public string[] startMixing()
         {
             string[] ret = new string[2];            
@@ -62,6 +76,9 @@ namespace lab1
             return ret;
         }
 
+        /// <summary>
+        /// Checks bitrate compatibility between the two files.
+        /// </summary>
         private bool checkBitRate()
         {
             if (wav1.SampleRateHz == 8 || wav1.SampleRateHz == 8)
@@ -70,6 +87,9 @@ namespace lab1
             return true;
         }
 
+        /// <summary>
+        /// Checks the sample rate and does the up-sampling if necessary.
+        /// </summary>
         private bool checkAndUpSampleTracks()
         {
             bool ret = false;
@@ -106,6 +126,11 @@ namespace lab1
             return ret;
         }
 
+
+        /// <summary>
+        /// Mixes the two files according to the mix factor.
+        /// </summary>
+        /// <param name="factorMix">The mix-factor variable</param>
         private void mix(double factorMix)
         {
             WAVFile maxSampleWAV, minSampleWAV;
@@ -137,7 +162,11 @@ namespace lab1
 
         }
 
-
+        /// <summary>
+        /// Outputs the file.
+        /// </summary>
+        /// <param name="filename">Output file's name</param>
+        /// <returns>The path to the mixed file</returns>
         private string createFile(String filename)
         {
             byte [] outputHeader;

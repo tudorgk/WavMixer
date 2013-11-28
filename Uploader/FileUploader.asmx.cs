@@ -71,6 +71,10 @@ namespace Uploader
             }
         }
 
+        /// <summary>
+        /// Begins the mixing process.
+        /// </summary>
+        /// <returns>The errorCode and the message/path</returns>
         [WebMethod]
         public string [] RunMixer()
         {   
@@ -89,6 +93,10 @@ namespace Uploader
             return mixer.startMixing();
         }
 
+        /// <summary>
+        /// Saves the files on the server.
+        /// </summary>
+        /// <returns>The errorCode and the message/path</returns>
         [WebMethod]
         public string [] MixWavFiles(byte[] f1, string fileName1, byte[] f2, string fileName2)
         {
