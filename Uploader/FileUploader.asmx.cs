@@ -7,7 +7,6 @@ using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.IO;
 using System.Diagnostics;
-using System.Collections.Generic;
 using lab1;
 
 namespace Uploader
